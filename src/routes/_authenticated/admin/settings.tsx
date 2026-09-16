@@ -163,7 +163,7 @@ function S() {
           {typeof window !== "undefined" ? window.location.origin : ""}/api/public/postback/[provider]?user_id={"{sub_id}"}&points={"{reward}"}&tx_id={"{trans_id}"}&sig={"{signature}"}
         </code>
         <p className="mt-2 text-gray-600">
-          Providers: <code>cpx_research</code>, <code>bitlabs</code>, <code>pollfish</code>, <code>adscend</code>, <code>lootably</code>, <code>monlix</code>, <code>gemiads</code>, <code>primewall</code>.
+          Providers: <code>cpx_research</code>, <code>bitlabs</code>, <code>pollfish</code>, <code>adscend</code>, <code>lootably</code>, <code>monlix</code>, <code>gemi</code> / <code>gemiads</code>, <code>primewall</code>.
         </p>
         <p className="mt-2 text-gray-600">Add each provider's signing secret as a Lovable Cloud secret named <code>POSTBACK_SECRET_&lt;PROVIDER&gt;</code> (uppercase, e.g. <code>POSTBACK_SECRET_CPX_RESEARCH</code>).</p>
       </div>

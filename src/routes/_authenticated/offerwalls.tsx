@@ -11,6 +11,14 @@ export const Route = createFileRoute("/_authenticated/offerwalls")({
 
 type OW = { id: string; provider: string; display_name: string; url_template: string; logo_url: string | null; description: string | null };
 
+const fallbackOfferwalls: OW[] = [
+  { id: "fallback-monlix", provider: "monlix", display_name: "Monlix", url_template: "https://offers.monlix.com/?appid=YOUR_APP_ID&userid={user_id}&subid=YOUR_SUB_ID", logo_url: null, description: "Monlix offer wall" },
+  { id: "fallback-opinionuniverse", provider: "opinionuniverse", display_name: "Opinion Universe", url_template: "https://opinionuniverse.com/offerwall?pubId=1739&SID={user_id}&appId=ID_674446a7d443b8.69645396", logo_url: null, description: "Opinion Universe offer wall" },
+  { id: "fallback-moustacheleads", provider: "moustacheleads", display_name: "Moustache Leads", url_template: "https://offerwall.moustacheleads.com/offerwall?placement_id=io6zVfCA3F8vU4YM&user_id={user_id}&api_key=PI4gWMWxmeOoGaFWBun8qrGBciGYwUrR", logo_url: null, description: "Moustache Leads offer wall" },
+  { id: "fallback-gemi", provider: "gemi", display_name: "Gemi Offery", url_template: "https://gemiads.com/offerwall?apikey=YOUR&user_id={user_id}", logo_url: null, description: "Gemi Offery offer wall" },
+  { id: "fallback-gemiads", provider: "gemiads", display_name: "GemiAds", url_template: "https://gemiads.com/offerwall?apikey=YOUR&user_id={user_id}", logo_url: null, description: "GemiAds offer wall" },
+];
+
 function OfferwallsPage() {
   const { user } = Route.useRouteContext();
   const [items, setItems] = useState<OW[]>([]);
@@ -19,7 +27,8 @@ function OfferwallsPage() {
     supabase.from("offerwalls").select("id,provider,display_name,url_template,logo_url,description").eq("active", true).then(({ data }) => setItems((data ?? []) as OW[]));
   }, []);
 
-  const ready = items.filter((o) => !wallNotReady(o));
+  const mergedItems = [...fallbackOfferwalls, ...items].filter((o, index, arr) => arr.findIndex((x) => x.provider === o.provider) === index);
+  const ready = mergedItems.filter((o) => !wallNotReady(o));
 
 
 

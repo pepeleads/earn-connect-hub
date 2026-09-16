@@ -2,7 +2,10 @@
 const PROVIDER_DOMAINS: Record<string, string> = {
   lootably: "lootably.com",
   pollfish: "pollfish.com",
+  gemi: "gemiads.com",
   gemiads: "gemiads.com",
+  gemi_offery: "gemiads.com",
+  offery: "gemiads.com",
   cpx_research: "cpx-research.com",
   bitlabs: "bitlabs.ai",
   adscend: "adscendmedia.com",

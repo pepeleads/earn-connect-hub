@@ -162,6 +162,7 @@ INSERT INTO public.offerwalls (provider, display_name, url_template) VALUES
 ('adscend','AdscendMedia','https://asmclk.com/adwall/pub/PUB/pro/PRO/?subid1={user_id}'),
 ('lootably','Lootably','https://wall.lootably.com/?placementID=YOUR_ID&sid={user_id}'),
 ('monlix','Monlix','https://offers.monlix.com/?appid=YOUR&userid={user_id}'),
+('gemi','Gemi Offery','https://gemiads.com/offerwall?apikey=YOUR&user_id={user_id}'),
 ('gemiads','GemiAds','https://gemiads.com/offerwall?apikey=YOUR&user_id={user_id}'),
 ('primewall','PrimeWall','https://primewall.io/wall?api=YOUR&sub={user_id}');
 
