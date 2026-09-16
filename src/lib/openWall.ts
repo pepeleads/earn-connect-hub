@@ -23,7 +23,6 @@ function normalizedPublicOfferUrl(provider: string, fallbackUrl: string): string
   if (p === "monlix") return "https://offers.monlix.com/?appid=YOUR_APP_ID&userid={user_id}&subid=YOUR_SUB_ID";
   if (p === "opinionuniverse") return "https://opinionuniverse.com/offerwall?pubId=1739&SID={user_id}&appId=ID_674446a7d443b8.69645396";
   if (p === "moustacheleads") return "https://offerwall.moustacheleads.com/offerwall?placement_id=io6zVfCA3F8vU4YM&user_id={user_id}&api_key=PI4gWMWxmeOoGaFWBun8qrGBciGYwUrR";
-  if (p.startsWith("gemi") || p === "offery") return "https://gemiads.com/offerwall?apikey=YOUR&user_id={user_id}";
   return fallbackUrl;
 }
 
@@ -77,7 +76,7 @@ export async function openWall(o: WallLike, userId: string) {
     url = signed.replaceAll("{user_id}", userId).replaceAll("{USER_ID}", userId);
   }
 
-  const placeholderAllowed = provider === "monlix" || provider === "opinionuniverse" || provider === "moustacheleads" || provider.startsWith("gemi") || provider === "offery" || provider.includes("gemi") || provider.includes("offery");
+  const placeholderAllowed = provider === "monlix" || provider === "opinionuniverse" || provider === "moustacheleads";
 
   if (!/^https?:\/\//i.test(url) || (!placeholderAllowed && /YOUR[_A-Z]*/i.test(url.replace(/\{[^}]+\}/g, "")))) {
     win?.close();

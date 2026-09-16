@@ -38,8 +38,7 @@ const offerwalls: Array<{ name: string; provider: string }> = [
   { name: "AdscendMedia", provider: "adscend" },
   { name: "Lootably", provider: "lootably" },
   { name: "Monlix", provider: "monlix" },
-  { name: "Gemi Offery", provider: "gemi" },
-  { name: "GemiAds", provider: "gemiads" },
+  { name: "Gemi", provider: "gemi" },
   { name: "PrimeWall", provider: "primewall" },
 ];
 const payouts = [

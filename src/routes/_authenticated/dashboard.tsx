@@ -804,8 +804,7 @@ const fallbackOfferwalls = [
   { id: "fallback-monlix", provider: "monlix", display_name: "Monlix", url_template: "https://offers.monlix.com/?appid=YOUR_APP_ID&userid={user_id}&subid=YOUR_SUB_ID", logo_url: null },
   { id: "fallback-opinionuniverse", provider: "opinionuniverse", display_name: "Opinion Universe", url_template: "https://opinionuniverse.com/offerwall?pubId=1739&SID={user_id}&appId=ID_674446a7d443b8.69645396", logo_url: null },
   { id: "fallback-moustacheleads", provider: "moustacheleads", display_name: "Moustache Leads", url_template: "https://offerwall.moustacheleads.com/offerwall?placement_id=io6zVfCA3F8vU4YM&user_id={user_id}&api_key=PI4gWMWxmeOoGaFWBun8qrGBciGYwUrR", logo_url: null },
-  { id: "fallback-gemi", provider: "gemi", display_name: "Gemi Offery", url_template: "https://gemiads.com/offerwall?apikey=YOUR&user_id={user_id}", logo_url: null },
-  { id: "fallback-gemiads", provider: "gemiads", display_name: "GemiAds", url_template: "https://gemiads.com/offerwall?apikey=YOUR&user_id={user_id}", logo_url: null },
+  { id: "fallback-gemi", provider: "gemi", display_name: "Gemi", url_template: "https://gemiwall.com/{PLACEMENT_ID}/{USER_ID}", logo_url: null },
 ] as const;
 
 function OfferwallsPreview() {
@@ -814,7 +813,9 @@ function OfferwallsPreview() {
   useEffect(() => {
     supabase.from("offerwalls").select("id,provider,display_name,url_template,logo_url").eq("active", true).limit(16).then(({ data }) => setItems((data ?? []) as any));
   }, []);
-  const mergedItems = [...fallbackOfferwalls, ...items].filter((o, index, arr) => arr.findIndex((x) => x.provider === o.provider) === index);
+  const mergedItems = [...fallbackOfferwalls, ...items]
+    .filter((o) => !["gemiads", "offery"].includes((o.provider || "").toLowerCase()))
+    .filter((o, index, arr) => arr.findIndex((x) => x.provider === o.provider) === index);
   const ready = mergedItems.filter((o) => !wallNotReady(o));
   return (
     <div className="bg-[#1a1c3a] text-white rounded-lg p-4">
